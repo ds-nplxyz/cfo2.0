@@ -11,7 +11,6 @@ Riepilogo istruzioni
 ## In corso
 
 - [ ] **[CFO Hub | Alta]** Aggiornare task e annotazioni dal portale remoto. Documento: `hub/README.md`. Criterio: creazione e consultazione verificate su D1 remoto.
-- [ ] **[CFO Hub editor | Alta]** Applicare la migrazione `document_drafts` al D1 remoto e pubblicare l’editor Milkdown. Documento: `hub/README.md`. Criterio: apertura documento, salvataggio bozza e recupero dopo reload sul dominio protetto.
 
 ## Bloccati
 
@@ -23,6 +22,7 @@ Nessun blocco registrato.
 - [x] Compilare i Markdown con istruzioni base.
 - [x] Creare la prima app locale CFO Hub.
 - [x] **[CFO Hub editor | Alta]** Implementare localmente editor Milkdown, modalità raw, bozze D1, diff e link dal catalogo. Evidenza: `npm run check`, migrazione D1 locale e ciclo HTTP documento/bozza/diff/reset verificati.
+- [x] **[CFO Hub editor remoto | Alta]** Applicare `document_drafts` al D1 remoto e pubblicare l’editor Milkdown. Evidenza: commit `51e048d`, versione Cloudflare `d13ff9b7-5ed9-4b68-a698-da0dbfc91c69`, salvataggio bozza verificato sul dominio protetto.
 - [x] Predisporre schema D1 locale.
 - [x] **[GitHub | Alta]** Creare e collegare il repository privato `ds-nplxyz/cfo2.0`. Evidenza: branch `main` pubblicato su GitHub.
 - [x] **[Cloudflare | Alta]** Autenticare Wrangler con l’account personale. Evidenza: deploy Workers Builds completato.

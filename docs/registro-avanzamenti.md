@@ -16,6 +16,7 @@ Conservare una traccia cronologica delle modifiche, delle verifiche e delle deci
 | 2026-09-18 | Cloudflare | Collegato Workers Builds e pubblicato il Worker sul dominio personale | `https://cfo.nonplusultra.xyz/` | Verificare Access da sessione non autenticata |
 | 2026-09-18 | Cloudflare Access | Protetto il Worker su tutto il traffico con policy per membri dell’account | Worker Access: `All traffic`; policy `Cloudflare account members` | Verificare login/logout end-to-end |
 | 2026-09-19 | CFO Hub editor | Implementato editor Milkdown browser-first con fallback raw, bozze D1 e anteprima locale | `hub/editor/`, `document_drafts`, `npm run check`, ciclo HTTP locale completo | Applicare migrazione D1 remota e pubblicare il Worker |
+| 2026-09-19 | CFO Hub editor remoto | Applicate le migrazioni D1 remote e pubblicato l’editor protetto da Access | Commit `51e048d`, versione `d13ff9b7-5ed9-4b68-a698-da0dbfc91c69`, salvataggio bozza verificato su `cfo.nonplusultra.xyz` | Progettare la pubblicazione controllata su GitHub |
 
 ## Regole
 
