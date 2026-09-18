@@ -22,6 +22,9 @@ function showPanel(id) {
   $('#document').hidden = id !== 'document';
   $('#tasks').hidden = id !== 'tasks';
   $('#annotations').hidden = id !== 'annotations';
+
+  const activePanel = id === 'documents' ? $('#document-list') : id === 'document' ? $('#document') : $(`#${id}`);
+  if (activePanel) activePanel.scrollIntoView({ block: 'start', behavior: 'auto' });
 }
 
 function renderDocuments(query = '') {
