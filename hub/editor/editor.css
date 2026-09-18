@@ -1,0 +1,24 @@
+@import '@milkdown/theme-nord/style.css';
+
+:root { color-scheme: light; font-family: Inter, ui-sans-serif, system-ui, sans-serif; background: #f3f5f7; color: #17212b; }
+body { margin: 0; }
+.editor-shell { max-width: 1100px; margin: 0 auto; padding: 28px clamp(16px, 4vw, 56px) 72px; }
+.editor-header { display: grid; grid-template-columns: auto 1fr auto; gap: 24px; align-items: center; margin-bottom: 12px; }
+.back-link { color: #345fdb; text-decoration: none; font-weight: 650; }
+.eyebrow { margin: 0 0 4px; color: #73808d; font-size: 11px; letter-spacing: .16em; }
+h1, h2 { margin: 0; }
+h1 { font-size: clamp(1.35rem, 3vw, 2.25rem); }
+.editor-actions { display: flex; gap: 8px; }
+button { border: 1px solid #c8d0d9; border-radius: 9px; background: white; color: #17212b; padding: 10px 14px; cursor: pointer; font: inherit; }
+button.primary { background: #315fda; border-color: #315fda; color: white; }
+button:disabled { opacity: .6; cursor: wait; }
+.status { min-height: 1.4em; color: #53606c; }
+.status.error { color: #a12c34; }
+.editor-card, .preview { background: white; border: 1px solid #dce2e8; border-radius: 16px; box-shadow: 0 12px 32px rgba(24, 39, 54, .08); }
+.editor-card { min-height: 60vh; padding: clamp(12px, 3vw, 32px); }
+#visual-editor { min-height: 54vh; }
+#raw-editor { width: 100%; min-height: 58vh; box-sizing: border-box; border: 0; resize: vertical; font: 14px/1.6 ui-monospace, SFMono-Regular, Consolas, monospace; outline: none; }
+.preview { margin-top: 22px; padding: 24px; }
+.preview-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.preview pre { white-space: pre-wrap; background: #f5f7f9; padding: 16px; border-radius: 10px; }
+@media (max-width: 720px) { .editor-header { grid-template-columns: 1fr; gap: 12px; } .editor-actions { width: 100%; } .editor-actions button { flex: 1; } .editor-shell { padding-top: 18px; } }

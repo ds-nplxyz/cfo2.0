@@ -4,11 +4,18 @@
   "type": "module",
   "scripts": {
     "build:index": "node scripts/build-index.mjs",
+    "build:editor": "vite build",
     "dev": "npm run build:index && wrangler dev",
-    "check": "npm run build:index",
-    "deploy": "npm run build:index && wrangler deploy"
+    "test": "node --test src/*.test.js",
+    "check": "npm run build:index && npm run build:editor && npm test",
+    "deploy": "npm run check && wrangler deploy"
   },
   "devDependencies": {
     "wrangler": "^4.0.0"
+  },
+  "dependencies": {
+    "@milkdown/crepe": "^7.22.1",
+    "@milkdown/theme-nord": "^7.22.1",
+    "vite": "^8.3.0"
   }
 }

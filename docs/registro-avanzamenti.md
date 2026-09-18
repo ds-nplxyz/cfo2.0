@@ -15,6 +15,7 @@ Conservare una traccia cronologica delle modifiche, delle verifiche e delle deci
 | 2026-09-18 | GitHub | Pubblicato il repository privato e configurato il branch `main` | `git@github.com:ds-nplxyz/cfo2.0.git` | Proseguire con documentazione Trino e riclassificazione |
 | 2026-09-18 | Cloudflare | Collegato Workers Builds e pubblicato il Worker sul dominio personale | `https://cfo.nonplusultra.xyz/` | Verificare Access da sessione non autenticata |
 | 2026-09-18 | Cloudflare Access | Protetto il Worker su tutto il traffico con policy per membri dell’account | Worker Access: `All traffic`; policy `Cloudflare account members` | Verificare login/logout end-to-end |
+| 2026-09-19 | CFO Hub editor | Implementato editor Milkdown browser-first con fallback raw, bozze D1 e anteprima locale | `hub/editor/`, `document_drafts`, `npm run check`, ciclo HTTP locale completo | Applicare migrazione D1 remota e pubblicare il Worker |
 
 ## Regole
 

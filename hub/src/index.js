@@ -1,7 +1,25 @@
+import { normalizeDocumentPath, isAllowedDocumentPath } from './path-validation.js';
+import { getDraft, upsertDraft, deleteDraft } from './document-store.js';
+
 const json = (body, status = 200) => new Response(JSON.stringify(body), { status, headers: { 'content-type': 'application/json; charset=utf-8' } });
 
 function now() { return new Date().toISOString(); }
 function id() { return crypto.randomUUID(); }
+
+async function documentIndex(env) {
+  const response = await env.ASSETS.fetch(new Request(new URL('/content/index.json', 'http://cfo2-hub.local')));
+  if (!response.ok) throw new Error('Indice documenti non disponibile');
+  return response.json();
+}
+
+async function resolveDocument(env, rawPath) {
+  let path;
+  try { path = normalizeDocumentPath(rawPath); } catch { return { error: json({ error: 'document path non valido' }, 400) }; }
+  const index = await documentIndex(env);
+  const allowed = new Set(index.documents.map((document) => document.path));
+  if (!isAllowedDocumentPath(path, allowed)) return { error: json({ error: 'documento non trovato' }, 404) };
+  return { path, document: index.documents.find((document) => document.path === path) };
+}
 
 async function list(env, table) {
   if (!env.DB) return { items: [] };
@@ -33,6 +51,39 @@ export default {
     if (url.pathname === '/api/annotations' && request.method === 'GET') return json(await list(env, 'annotations'));
     if (url.pathname === '/api/tasks' && request.method === 'POST') return create(env, 'tasks', await request.json());
     if (url.pathname === '/api/annotations' && request.method === 'POST') return create(env, 'annotations', await request.json());
+
+    if (url.pathname.startsWith('/api/documents/')) {
+      const resolved = await resolveDocument(env, decodeURIComponent(url.pathname.slice('/api/documents/'.length)));
+      if (resolved.error) return resolved.error;
+      return json({ path: resolved.path, content: resolved.document.content, sourceUpdatedAt: resolved.document.updatedAt });
+    }
+
+    if (url.pathname.startsWith('/api/drafts/')) {
+      const resolved = await resolveDocument(env, decodeURIComponent(url.pathname.slice('/api/drafts/'.length)));
+      if (resolved.error) return resolved.error;
+      if (!env.DB) return json({ error: 'D1 non configurato' }, 503);
+      if (request.method === 'GET') {
+        const draft = await getDraft(env.DB, resolved.path);
+        return draft ? json(draft) : json({ error: 'bozza non trovata' }, 404);
+      }
+      if (request.method === 'PUT') {
+        const input = await request.json();
+        if (typeof input.content !== 'string') return json({ error: 'content obbligatorio' }, 400);
+        const draft = await upsertDraft(env.DB, resolved.path, input.content, input.baseUpdatedAt, now());
+        return json(draft, 201);
+      }
+      if (request.method === 'DELETE') {
+        await deleteDraft(env.DB, resolved.path);
+        return json({ ok: true });
+      }
+    }
+
+    if (url.pathname.startsWith('/api/diff/')) {
+      const resolved = await resolveDocument(env, decodeURIComponent(url.pathname.slice('/api/diff/'.length)));
+      if (resolved.error) return resolved.error;
+      const draft = env.DB ? await getDraft(env.DB, resolved.path) : null;
+      return json({ path: resolved.path, canonical: resolved.document.content, draft: draft?.content || null, hasChanges: Boolean(draft && draft.content !== resolved.document.content), sourceUpdatedAt: resolved.document.updatedAt });
+    }
     return env.ASSETS.fetch(request);
   }
 };

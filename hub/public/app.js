@@ -30,14 +30,14 @@ function showPanel(id) {
 function renderDocuments(query = '') {
   const needle = query.toLowerCase();
   const filtered = state.documents.filter((doc) => `${doc.title} ${doc.area} ${doc.content}`.toLowerCase().includes(needle));
-  $('#document-list').innerHTML = filtered.map((doc) => `<article class="document-card" data-path="${escapeHtml(doc.path)}"><h2>${escapeHtml(doc.title)}</h2><p>${escapeHtml(doc.excerpt)}</p><div class="meta">${escapeHtml(doc.area)} · ${escapeHtml(doc.relativePath)}</div></article>`).join('') || '<p>Nessun documento trovato.</p>';
-  document.querySelectorAll('.document-card').forEach((card) => card.addEventListener('click', () => openDocument(card.dataset.path)));
+  $('#document-list').innerHTML = filtered.map((doc) => `<article class="document-card" data-path="${escapeHtml(doc.path)}"><h2>${escapeHtml(doc.title)}</h2><p>${escapeHtml(doc.excerpt)}</p><div class="meta">${escapeHtml(doc.area)} · ${escapeHtml(doc.relativePath)}</div><a class="edit-link" href="/edit.html?path=${encodeURIComponent(doc.path)}">Modifica</a></article>`).join('') || '<p>Nessun documento trovato.</p>';
+  document.querySelectorAll('.document-card').forEach((card) => card.addEventListener('click', (event) => { if (event.target.closest('a')) return; openDocument(card.dataset.path); }));
 }
 
 function openDocument(path) {
   const doc = state.documents.find((item) => item.path === path);
   if (!doc) return;
-  $('#document').innerHTML = `${markdownToHtml(doc.content)}<p class="meta">Percorso: ${escapeHtml(doc.relativePath)}</p>`;
+  $('#document').innerHTML = `<div class="document-toolbar"><p class="meta">Percorso: ${escapeHtml(doc.relativePath)}</p><a class="edit-link" href="/edit.html?path=${encodeURIComponent(doc.path)}">Modifica documento</a></div>${markdownToHtml(doc.content)}`;
   showPanel('document');
 }
 

@@ -5,3 +5,5 @@ dist/
 *.log
 content/*.local.json
 public/content/index.json
+public/edit.html
+public/editor/

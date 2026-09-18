@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CFO Hub — Modifica documento</title>
+  </head>
+  <body>
+    <main class="editor-shell">
+      <header class="editor-header">
+        <a href="/" class="back-link">← Catalogo</a>
+        <div>
+          <p class="eyebrow">CFO HUB / EDITOR</p>
+          <h1 id="document-title">Caricamento documento…</h1>
+        </div>
+        <div class="editor-actions">
+          <button id="preview-button" type="button">Anteprima</button>
+          <button id="save-button" class="primary" type="button">Salva bozza</button>
+        </div>
+      </header>
+      <p id="status" class="status" role="status">Inizializzazione editor…</p>
+      <section id="editor-card" class="editor-card" aria-label="Editor Markdown">
+        <div id="visual-editor"></div>
+        <textarea id="raw-editor" hidden aria-label="Markdown grezzo"></textarea>
+      </section>
+      <section id="preview" class="preview" hidden>
+        <div class="preview-header">
+          <h2>Anteprima bozza</h2>
+          <button id="close-preview" type="button">Chiudi</button>
+        </div>
+        <div id="preview-content"></div>
+      </section>
+    </main>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
