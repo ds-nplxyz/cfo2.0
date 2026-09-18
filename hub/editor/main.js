@@ -14,6 +14,7 @@ const previewButton = document.querySelector('#preview-button');
 let canonical = null;
 let sourceUpdatedAt = null;
 let editor = null;
+let crepe = null;
 let mode = 'visual';
 
 function setStatus(message, error = false) {
@@ -23,7 +24,7 @@ function setStatus(message, error = false) {
 
 function apiPath(kind) { return `/api/${kind}/${encodeDocumentPath(path)}`; }
 
-function currentContent() { return mode === 'raw' ? raw.value : editor.getMarkdown(); }
+function currentContent() { return mode === 'raw' ? raw.value : crepe.getMarkdown(); }
 
 async function load() {
   if (!path) throw new Error('Parametro path mancante');
@@ -40,7 +41,8 @@ async function load() {
     raw.value = canonical;
     setStatus('Modalità raw attiva per preservare la sintassi avanzata.');
   } else {
-    editor = await new Crepe({ root: visual, defaultValue: canonical }).create();
+    crepe = new Crepe({ root: visual, defaultValue: canonical });
+    editor = await crepe.create();
     setStatus('Documento canonico caricato.');
   }
   const draftResponse = await fetch(apiPath('drafts'));
@@ -48,8 +50,9 @@ async function load() {
     const draft = await draftResponse.json();
     if (mode === 'raw') raw.value = draft.content;
     else {
-      await editor.destroy();
-      editor = await new Crepe({ root: visual, defaultValue: draft.content }).create();
+      await crepe.destroy();
+      crepe = new Crepe({ root: visual, defaultValue: draft.content });
+      editor = await crepe.create();
     }
     setStatus('Bozza locale recuperata da D1.');
   }
