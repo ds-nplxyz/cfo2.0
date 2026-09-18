@@ -1,0 +1,18 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "cfo2-hub",
+  "main": "src/index.js",
+  "compatibility_date": "2026-09-18",
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "cfo-hub",
+      "database_id": "4908ae59-a9fa-4348-85b6-b1272b15dc64",
+      "migrations_dir": "./db/migrations"
+    }
+  ]
+}

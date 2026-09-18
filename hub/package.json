@@ -1,0 +1,14 @@
+{
+  "name": "cfo2-hub",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:index": "node scripts/build-index.mjs",
+    "dev": "npm run build:index && wrangler dev",
+    "check": "npm run build:index",
+    "deploy": "npm run build:index && wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}

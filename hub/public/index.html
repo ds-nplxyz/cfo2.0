@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="CFO 2.0 project hub">
+    <title>CFO 2.0 Hub</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">CFO 2.0</p>
+        <h1>Project Hub</h1>
+      </div>
+      <div id="health" class="status" aria-live="polite">Connessione in verifica…</div>
+    </header>
+
+    <main class="layout">
+      <aside class="sidebar" aria-label="Navigazione progetto">
+        <label for="search">Cerca nei documenti</label>
+        <input id="search" type="search" placeholder="Titolo, area o testo…">
+        <nav id="areas" aria-label="Aree del progetto"></nav>
+        <section class="quick-links">
+          <h2>Operativo</h2>
+          <button type="button" data-view="tasks">Task</button>
+          <button type="button" data-view="annotations">Annotazioni</button>
+        </section>
+      </aside>
+
+      <section class="content">
+        <div id="document-list" class="document-list" aria-live="polite"></div>
+        <article id="document" class="document" hidden></article>
+
+        <section id="tasks" class="panel" hidden>
+          <div class="panel-heading"><h2>Task</h2><span id="task-count"></span></div>
+          <form id="task-form" class="inline-form">
+            <input name="title" required placeholder="Nuovo task">
+            <select name="priority"><option value="medium">Media</option><option value="high">Alta</option><option value="low">Bassa</option></select>
+            <button type="submit">Aggiungi</button>
+          </form>
+          <ul id="task-list" class="record-list"></ul>
+        </section>
+
+        <section id="annotations" class="panel" hidden>
+          <div class="panel-heading"><h2>Annotazioni</h2><span id="annotation-count"></span></div>
+          <form id="annotation-form" class="stack-form">
+            <input name="document_path" required placeholder="Percorso documento, es. docs/04-profit-loss.md">
+            <textarea name="body" required rows="4" placeholder="Idea, nota o domanda…"></textarea>
+            <button type="submit">Salva annotazione</button>
+          </form>
+          <ul id="annotation-list" class="record-list"></ul>
+        </section>
+      </section>
+    </main>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

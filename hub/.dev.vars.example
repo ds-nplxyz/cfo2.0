@@ -1,0 +1,2 @@
+# Nessun segreto necessario per la prima versione locale.
+# I segreti remoti devono essere configurati con Wrangler/Cloudflare e mai committati.

@@ -1,0 +1,7 @@
+node_modules/
+.wrangler/
+.dev.vars
+dist/
+*.log
+content/*.local.json
+public/content/index.json

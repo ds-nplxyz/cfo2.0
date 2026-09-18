@@ -1,0 +1,25 @@
+# Segreti e configurazioni locali
+.env
+.env.*
+!.env.example
+*.local
+
+# Dipendenze e runtime
+node_modules/
+**/node_modules/
+.venv/
+.wrangler/
+**/.wrangler/
+
+# Output generati
+hub/public/content/index.json
+hub/content/
+*.log
+coverage/
+dist/
+
+# File temporanei dell'editor
+.vscode/
+.idea/
+*.tmp
+*.temp
