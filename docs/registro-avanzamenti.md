@@ -10,8 +10,11 @@ Conservare una traccia cronologica delle modifiche, delle verifiche e delle deci
 
 | Data | Area | Avanzamento | Evidenza | Prossimo passo |
 |---|---|---|---|---|
-| 2026-09-18 | CFO Hub | Creata app locale con indicizzazione Markdown, API e schema D1 locale | `hub/` e verifica HTTP locale | Collegare account Cloudflare e Git personali |
+| 2026-09-18 | CFO Hub | Creata app locale con indicizzazione Markdown, API e schema D1 locale | `hub/` e verifica HTTP locale | Aggiornare task e annotazioni dal portale remoto |
 | 2026-09-18 | Documentazione | Compilati i Markdown con istruzioni base | `docs/`, `data-model/`, `mcp/`, `power-bi/` | Inserire dati reali verificati |
+| 2026-09-18 | GitHub | Pubblicato il repository privato e configurato il branch `main` | `git@github.com:ds-nplxyz/cfo2.0.git` | Proseguire con documentazione Trino e riclassificazione |
+| 2026-09-18 | Cloudflare | Collegato Workers Builds e pubblicato il Worker sul dominio personale | `https://cfo.nonplusultra.xyz/` | Verificare Access da sessione non autenticata |
+| 2026-09-18 | Cloudflare Access | Protetto il Worker su tutto il traffico con policy per membri dell’account | Worker Access: `All traffic`; policy `Cloudflare account members` | Verificare login/logout end-to-end |
 
 ## Regole
 
